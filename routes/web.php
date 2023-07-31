@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('index');
 Route::get('/danh-muc', [\App\Http\Controllers\Web\HomeController::class, 'category'])->name('category');
 Route::get('/the-loai', [\App\Http\Controllers\Web\HomeController::class, 'genre'])->name('genre');
-Route::get('/quoc-gia', [\App\Http\Controllers\Web\HomeController::class, 'country'])->name('genre');
+Route::get('/quoc-gia', [\App\Http\Controllers\Web\HomeController::class, 'country'])->name('country');
 Route::get('/phim', [\App\Http\Controllers\Web\HomeController::class, 'movie'])->name('movie');
 Route::get('/xem-phim', [\App\Http\Controllers\Web\HomeController::class, 'watch'])->name('watch');
 Route::get('/episode', [\App\Http\Controllers\Web\HomeController::class, 'episode'])->name('episode');
