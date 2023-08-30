@@ -96,32 +96,56 @@
             <div class="collapse navbar-collapse" id="halim">
                 <div class="menu-menu_1-container">
                     <ul id="menu-menu_1" class="nav navbar-nav navbar-left">
-                        <li class="current-menu-item active"><a title="Trang Chủ" href="{{ route('index') }}">Trang Chủ</a></li>
-                        <li class="mega"><a title="Phim Mới" href="{{ route('category') }}">Phim Mới</a></li>
-{{--                        <li class="mega dropdown">--}}
-{{--                            <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>--}}
-{{--                            <ul role="menu" class=" dropdown-menu">--}}
-{{--                                <li><a title="Phim 2020" href="danhmuc.php">Phim 2020</a></li>--}}
-{{--                                <li><a title="Năm 2019" href="danhmuc.php">Năm 2019</a></li>--}}
-{{--                                <li><a title="Năm 2018" href="danhmuc.php">Năm 2018</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
+                        <li class="current-menu-item active"><a title="Trang Chủ" href="index.php">Trang Chủ</a></li>
+                        <li class="mega"><a title="Phim Mới" href="danhmuc.html">Phim Mới</a></li>
+                        <li class="mega dropdown">
+                            <a title="Năm" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Năm <span class="caret"></span></a>
+                            <ul role="menu" class=" dropdown-menu">
+                                <li><a title="Phim 2020" href="danhmuc.html">Phim 2020</a></li>
+                                <li><a title="Năm 2019" href="danhmuc.html">Năm 2019</a></li>
+                                <li><a title="Năm 2018" href="danhmuc.html">Năm 2018</a></li>
+                            </ul>
+                        </li>
                         <li class="mega dropdown">
                             <a title="Thể Loại" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Thể Loại <span class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
-                                <li><a title="Tâm Lý" href="{{ route('genre') }}">Tâm Lý</a></li>
-
+                                <li><a title="Tâm Lý" href="danhmuc.html">Tâm Lý</a></li>
+                                <li><a title="Hành động" href="">Hành động</a></li>
+                                <li><a title="Viễn Tưởng" href="">Viễn Tưởng</a></li>
+                                <li><a title="Hoạt Hình" href="danhmuc.html">Hoạt Hình</a></li>
+                                <li><a title="Kinh Dị" href="danhmuc.html">Kinh Dị</a></li>
+                                <li><a title="Hài Hước" href="danhmuc.html">Hài Hước</a></li>
+                                <li><a title="Hình Sự" href="danhmuc.html">Hình Sự</a></li>
+                                <li><a title="Võ Thuật" href="danhmuc.html">Võ Thuật</a></li>
+                                <li><a title="Cổ Trang" href="danhmuc.html">Cổ Trang</a></li>
+                                <li><a title="Phim Ma" href="danhmuc.html">Phim Ma</a></li>
+                                <li><a title="Tình Cảm" href="danhmuc.html">Tình Cảm</a></li>
+                                <li><a title="Thể Thao - Âm Nhạc" href="danhmuc.html">Thể Thao &#8211; Âm Nhạc</a></li>
+                                <li><a title="Thần Thoại" href="danhmuc.html">Thần Thoại</a></li>
+                                <li><a title="Tài Liệu" href="danhmuc.html">Tài Liệu</a></li>
+                                <li><a title="Phiêu Lưu" href="danhmuc.html">Phiêu Lưu</a></li>
+                                <li><a title="Gia Đình" href="danhmuc.html">Gia Đình</a></li>
+                                <li><a title="Chiến Tranh" href="danhmuc.html">Chiến Tranh</a></li>
                             </ul>
                         </li>
                         <li class="mega dropdown">
                             <a title="Quốc Gia" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Quốc Gia <span class="caret"></span></a>
                             <ul role="menu" class=" dropdown-menu">
-                                <li><a title="Việt nam" href="{{ route('country') }}">Việt nam</a></li>
-
+                                <li><a title="Việt nam" href="danhmuc.html">Việt nam</a></li>
+                                <li><a title="Ấn Độ" href="danhmuc.html">Ấn Độ</a></li>
+                                <li><a title="Mỹ" href="danhmuc.html">Mỹ</a></li>
+                                <li><a title="Hồng Kông" href="danhmuc.html">Hồng Kông</a></li>
+                                <li><a title="Nhật Bản" href="danhmuc.html">Nhật Bản</a></li>
+                                <li><a title="Trung Quốc" href="danhmuc.html">Trung Quốc</a></li>
+                                <li><a title="Hàn Quốc" href="danhmuc.html">Hàn Quốc</a></li>
+                                <li><a title="Đài Loan" href="danhmuc.html">Đài Loan</a></li>
+                                <li><a title="Thái Lan" href="danhmuc.html">Thái Lan</a></li>
+                                <li><a title="Philippin" href="danhmuc.html">Philippin</a></li>
                             </ul>
                         </li>
-
-                        <li><a title="Phim Chiếu Rạp" href="danhmuc.php">Phim Chiếu Rạp</a></li>
+                        <li><a title="Phim Lẻ" href="danhmuc.html">Phim Lẻ</a></li>
+                        <li><a title="Phim Bộ" href="danhmuc.html">Phim Bộ</a></li>
+                        <li><a title="Phim Chiếu Rạp" href="danhmuc.html">Phim Chiếu Rạp</a></li>
                     </ul>
                 </div>
                 <ul class="nav navbar-nav navbar-left" style="background:#000;">
