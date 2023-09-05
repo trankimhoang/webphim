@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
@@ -20,11 +23,11 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -35,7 +38,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->all();
+
+            $category = new Category();
+            $category->fill($data);
+
+            $category->save();
+        } catch (\Exception $exception){
+            Log::error($exception->getMessage());
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
