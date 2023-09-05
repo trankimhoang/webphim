@@ -15,9 +15,16 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $listCategory = Category::where(function ($query) use($request){
+            if (!empty($request->get('search'))){
+                $query->where('name', 'like', "%" . $request->get('search') . "%");
+            }
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('admin.category.index', compact('listCategory'));
     }
 
     /**
@@ -70,7 +77,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        if (empty($category)) {
+            abort(404);
+        }
+
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -82,7 +95,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $category = Category::find($id);
+            $data = $request->all();
+
+            $category->fill($data);
+
+            $category->save();
+
+            return redirect()->route('admin.categories.index')->with('success', 'Sửa thành công');
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
