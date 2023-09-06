@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <label for="description">Description @include('admin.include.required_icon')</label>
-            <input type="text" name="description" class="form-control" value="{{ old('description', $genre->description) }}">
+            <textarea name="description" class="form-control">{{ old('description', $genre->description) }}</textarea>
             @error('description')
             <p class="alert alert-danger">{{ $message }}</p>
             @enderror

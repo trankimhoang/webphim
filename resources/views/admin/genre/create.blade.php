@@ -12,7 +12,7 @@
 
         <div class="form-group pt-3">
             <label for="name">Description @include('admin.include.required_icon')</label>
-            <input type="text" name="description" class="form-control">
+            <textarea name="description" class="form-control"></textarea>
             @error('description')
             <p class="alert alert-danger">{{ $message }}</p>
             @enderror

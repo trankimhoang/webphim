@@ -1,6 +1,6 @@
 @extends('layout.master_admin')
 @section('content')
-    <form action="{{ route('admin.categories.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.countries.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group pt-3">
             <label for="name">Title @include('admin.include.required_icon')</label>
