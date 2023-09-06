@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\GenreStoreRequest;
+use App\Models\Category;
+use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GenreController extends Controller
 {
@@ -12,9 +16,16 @@ class GenreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $listGenre = Genre::where(function ($query) use($request){
+            if (!empty($request->get('search'))){
+                $query->where('name', 'like', "%" . $request->get('search') . "%");
+            }
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        return view('admin.genre.index', compact('listGenre'));
     }
 
     /**
@@ -24,18 +35,30 @@ class GenreController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.genre.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  GenreStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GenreStoreRequest $request)
     {
-        //
+        try {
+            $data = $request->all();
+
+            $genre = new Genre();
+            $genre->fill($data);
+
+            $genre->save();
+
+            return redirect()->route('admin.genres.edit', $genre->id)->with('success', 'Thêm thành công');
+        } catch (\Exception $exception){
+            Log::error($exception->getMessage());
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
@@ -57,7 +80,13 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genre = Genre::find($id);
+
+        if (empty($genre)) {
+            abort(404);
+        }
+
+        return view('admin.genre.edit', compact('genre'));
     }
 
     /**
@@ -69,7 +98,19 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $genre = Genre::find($id);
+            $data = $request->all();
+
+            $genre->fill($data);
+
+            $genre->save();
+
+            return redirect()->route('admin.genres.index')->with('success', 'Edit successfully');
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     /**
@@ -80,6 +121,19 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $genre = Genre::find($id);
+            $genre->delete();
+
+            return redirect()->back()->with('success', 'Deleted successfully');
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+
+            if ($exception->getCode() == 23000) {
+                return redirect()->back()->with('error', "Không thể xóa #$id vì đang có chứa sản phẩm");
+            }
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 }

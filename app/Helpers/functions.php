@@ -8,3 +8,12 @@ function mapStatusCategory($status){
 
     return $array[$status] ?? '';
 }
+
+function mapStatusGenre($status){
+    $array = [
+        0 => 'Off',
+        1 => 'On'
+    ];
+
+    return $array[$status] ?? '';
+}

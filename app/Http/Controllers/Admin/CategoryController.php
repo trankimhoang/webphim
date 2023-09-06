@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CategoryStoreRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -40,10 +41,10 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CategoryStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
         try {
             $data = $request->all();
@@ -52,6 +53,8 @@ class CategoryController extends Controller
             $category->fill($data);
 
             $category->save();
+
+            return redirect()->route('admin.categories.edit', $category->id)->with('success', 'Thêm thành công');
         } catch (\Exception $exception){
             Log::error($exception->getMessage());
             return redirect()->back()->with('error', $exception->getMessage());
@@ -103,7 +106,7 @@ class CategoryController extends Controller
 
             $category->save();
 
-            return redirect()->route('admin.categories.index')->with('success', 'Sửa thành công');
+            return redirect()->route('admin.categories.index')->with('success', 'Edit successfully');
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             return redirect()->back()->with('error', $exception->getMessage());
@@ -118,6 +121,19 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $category = Category::find($id);
+            $category->delete();
+
+            return redirect()->back()->with('success', 'Deleted successfully');
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+
+            if ($exception->getCode() == 23000) {
+                return redirect()->back()->with('error', "Không thể xóa #$id vì đang có chứa sản phẩm");
+            }
+
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 }
